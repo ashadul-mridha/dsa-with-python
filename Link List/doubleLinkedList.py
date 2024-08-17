@@ -79,14 +79,43 @@ class DoubleLinkList:
         self.length -= 1
         return True
 
+    #get value of specific index
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        if index < self.length/2:
+            for _ in range(index):
+                temp = temp.next
+        else:
+            temp = self.tail
+            for _ in range(self.length - 1, index, -1):
+                temp = temp.prev  
+        return temp
+    
+    # change value of specific index node
+    def set_value(self, index, value):
+        temp = self.get(2)
+
+        if temp:
+            temp.value = value
+            return True
+        return False
+
 
 
 
 
 myLinkedList = DoubleLinkList(7)
-myLinkedList.append(2)
+myLinkedList.append(5)
 myLinkedList.append(3)
-myLinkedList.prepend(4)
-myLinkedList.pop_first()
+# myLinkedList.prepend(4)
+# myLinkedList.pop_first()
+# print("Print Index 2 Value: ",myLinkedList.get(2).value)
 
+myLinkedList.printList()
+
+
+print("Print After Set Value Of Index 1: ")
+myLinkedList.set_value(1, 10)
 myLinkedList.printList()
