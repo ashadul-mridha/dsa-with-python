@@ -107,10 +107,19 @@ class LinkedList:
             self.tail = None
         return temp
 
-    def prepend(self):
-        return True
+    def prepend(self, value):
+        new_node = Node(value)
+
+        head_node = self.head
+
+        self.head = new_node
+        self.head.next = head_node
+
     def pop_first(self):
-        return True
+        head_node = self.head
+
+        self.head = head_node.next
+        head_node.next = None
 
     def get(self):
         return True
@@ -125,7 +134,8 @@ class LinkedList:
 my_link_list = LinkedList(10)
 my_link_list.append(20)
 my_link_list.append(30)
-my_link_list.pop()
+# my_link_list.prepend(40)
+my_link_list.pop_first()
 my_link_list.printList()
     
 
