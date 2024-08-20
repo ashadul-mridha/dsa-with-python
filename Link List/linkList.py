@@ -110,32 +110,69 @@ class LinkedList:
     def prepend(self, value):
         new_node = Node(value)
 
-        head_node = self.head
+        if self.length == 0:
+            self.head == new_node
+            self.tail == new_node
+        else:
+            head_node = self.head
+            self.head = new_node
+            self.head.next = head_node
 
-        self.head = new_node
-        self.head.next = head_node
+        self.length +1
 
     def pop_first(self):
-        head_node = self.head
+        if self.length == 0:
+            return False
 
+        head_node = self.head
         self.head = head_node.next
         head_node.next = None
+        self.length -=1
 
-    def get(self):
-        return True
-    def set_value(self):
-        return True
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
 
-    def insert(self):
-        return True
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+
+
+    def set_value(self, index, value):
+        if index < 0 or index >= self.length:
+            return None
+
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        temp.value = value
+        return temp
+
+    def insert(self, index, value):
+        new_node = Node(value)
+        if index == 0:
+            head_val = self.head
+            self.head = new_node
+            self.head.next = head_val
+        else:
+            index_value = self.get(index)
+            prev_value = self.get(index - 1)
+
+            new_node.next = index_value
+            prev_value.next = new_node
+        return new_node
+
     def remove(self):
         return True
 
 my_link_list = LinkedList(10)
 my_link_list.append(20)
 my_link_list.append(30)
-# my_link_list.prepend(40)
-my_link_list.pop_first()
+my_link_list.prepend(5)
+# my_link_list.pop_first()
+# my_link_list.set_value(0, 5)
+# my_link_list.insert(2, 15)
 my_link_list.printList()
     
 
