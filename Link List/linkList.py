@@ -163,7 +163,19 @@ class LinkedList:
             prev_value.next = new_node
         return new_node
 
-    def remove(self):
+    def remove(self, index):
+        if index == 0:
+            head_node = self.head
+
+            self.head = head_node.next
+            head_node.next = None
+        else:
+            prev_value = self.get(index - 1)
+            value = self.get(index)
+            next_value = self.get(index + 1)
+
+            prev_value.next = next_value
+            value.next = None
         return True
 
 my_link_list = LinkedList(10)
@@ -173,6 +185,7 @@ my_link_list.prepend(5)
 # my_link_list.pop_first()
 # my_link_list.set_value(0, 5)
 # my_link_list.insert(2, 15)
+my_link_list.remove(0)
 my_link_list.printList()
     
 
