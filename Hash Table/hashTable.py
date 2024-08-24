@@ -22,8 +22,16 @@ class HashTable:
             for i in range(len(self.data_map[index])):
                 if self.data_map[index][i][0] == key:
                     return self.data_map[index][i][1]
-
         return None
+
+    def get_all_keys(self):
+        all_keys= []
+
+        for i in range(len(self.data_map)):
+            if self.data_map[i] is not None:
+                for j in range(len(self.data_map[i])):
+                    all_keys.append(self.data_map[i][j][0])
+        return all_keys
 
     def print_table(self):
         for i, val in enumerate(self.data_map): 
@@ -40,6 +48,6 @@ my_hash_table.set_item('water', 500)
 my_hash_table.set_item('bus', 600)
 
 # print(my_hash_table.get_item('boat'))
-print(my_hash_table.returnDataMap())
+print(my_hash_table.get_all_keys())
 
 my_hash_table.print_table()
